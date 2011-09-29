@@ -5,7 +5,6 @@ gem 'rails', '3.1.0'
 gem 'compass', git: 'git://github.com/chriseppstein/compass.git'
 
 gem 'databasedotcom'
-gem 'databasedotcom-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
