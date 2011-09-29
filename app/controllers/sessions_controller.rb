@@ -4,10 +4,12 @@ class SessionsController < ApplicationController
     def login
     end
     
+    # temp method for fetching a new access token and saving to session. This will change pending OAuth bug fix
+    # this same code actually run in the application_helper right now.
     def sfdcauth
       client = Databasedotcom::Client.new("config/databasedotcom.yml")
-      access_token = client.authenticate :username => ENV['sfdc_username'], :password => ENV['sfdc_password']
-      render :inline => "<html><body><b>New access token from salesforce:</b><br>"+access_token.to_s+"</body></html>"
+      ENV['access_token'] = client.authenticate :username => ENV['sfdc_username'], :password => ENV['sfdc_password']
+      render :inline => "<html><body><b>New access token from salesforce. Saved to session.</b><br>"+ENV['access_token']+"</body></html>"
     end
     
     def create

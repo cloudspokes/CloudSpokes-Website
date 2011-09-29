@@ -28,6 +28,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'httparty'
 
 # Use unicorn as the web server
 # gem 'unicorn'
