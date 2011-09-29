@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :load_user, :except => [:index, :new]
   
   def index
-    @users = User.all
+    # @users = User.all
   end
   
   def show
