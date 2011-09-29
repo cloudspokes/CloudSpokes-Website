@@ -1,7 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
+
 gem 'compass', git: 'git://github.com/chriseppstein/compass.git'
+
+gem 'databasedotcom'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
@@ -11,6 +14,11 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'rb-fsevent'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
 end
 
 group :assets do
@@ -30,3 +38,4 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'omniauth'
