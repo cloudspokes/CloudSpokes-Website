@@ -1,0 +1,65 @@
+<% unless @challenge.empty? %>
+  <!--
+    <table>
+  <% @challenge.keys.each do |key| %>
+                        <tr>
+                          <th align="left"><%= key.humanize %></th>
+                          <td> <%=  @challenge[key]%></td>
+                        </tr>
+  <% end %>
+    </table>
+  -->
+
+
+  <table width="100%">
+    <tr>
+      <td width="65%">
+        <h3>Overview</h3> <br/>
+        <%=  @challenge['Description__c']%> <br/>
+        <h3>Challenge Requirements</h3> <br/>
+        <%= @challenge['Requirements__c']%> <br/>
+        <h3>Usage Details</h3> <br/>
+        <%=  @challenge['Usage_Details__c']%> <br/>
+        <h3>Submission Details</h3> <br/>
+        <%=  @challenge['Submission_Details__c']%> <br/>
+        <h3>Additional Info</h3> <br/>
+        <%=  @challenge['Additional_Info__c'] %> <br/>
+      </td>
+
+      <td width="35%">
+        <h2><%=  @challenge['Name']%> </h2><br/>
+        <h3>Time Left for Submission</h3> <br/>
+        <%= @challenge['Days_till_Close__c']%> days<br/>
+        <h3>Top Prize</h3> <br/>
+        <%=  @challenge['Top_Prize__c']%> <br/>
+        <h3>Total Prize Money</h3> <br/>
+        $<%=  @challenge['Total_Prize_Money__c']%> <br/>
+        <h3>Winner announced</h3> <br/>
+        <%=  @challenge['Winner_Announced__c']%> <br/>
+        <h3>Additional Info</h3> <br/>
+        <%=  @challenge['Additional_Info__c'] %> <br/>
+      </td>
+    </tr>
+  </table>
+  <hr/>
+  <h3>Post a Comment</h3>
+
+<%else%>
+  everything is empty
+<% end %>
+
+<style>
+  h3 {
+    color: #6699C9;
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+
+  h2 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 100%;
+  }
+</style>

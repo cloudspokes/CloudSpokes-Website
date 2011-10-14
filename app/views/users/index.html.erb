@@ -1,0 +1,10 @@
+
+<ul>
+<% @users.each do |user| %>
+<li><%= user.Name %></li>
+<% end %>
+</ul>
+<%= link_to "Create a new user", new_user_path %>
+<%= link_to "show user", users_path('12343') %>
+<hr/>
+<%= link_to "Show Chatter", chatters_path %>

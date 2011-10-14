@@ -2,9 +2,15 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
+# fix for Error - uninitialized constant Rake::DSL in Ruby Gem
+# see http://stackoverflow.com/questions/6268518/uninitialized-constant-rakedsl-in-ruby-gem
+#include Rake::DSL if defined?(Rake::DSL)
+
 gem 'compass', git: 'git://github.com/chriseppstein/compass.git'
 
 gem 'databasedotcom'
+#leverage te databasedotcom rails helper gem
+gem 'databasedotcom-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'

@@ -1,0 +1,24 @@
+<h1>Chatters#index</h1>
+<p>My Chatter listing</p>
+<hr/>
+
+I am  <%= @me['Name'] %>, id: <%= @me['Id'] %>
+
+<table border="2px">
+  <% @feed_items.each do |feed_item| %>
+    <tr>
+      <td>
+        <%=  feed_item.likes    %>
+      </td>
+      <td>
+        <%= feed_item.comments  %>
+      </td>
+      <td>
+        
+      </td>
+      <td>
+        <%=  feed_item.like    %>
+      </td>
+    </tr>
+  <% end %>
+</table>
