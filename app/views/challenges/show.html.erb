@@ -42,14 +42,14 @@
               <% user = User.find(feed.CreatedById) %>
               <table cellspacing="5px" >
                 <tr class="comment">
-                  <td width="80px" style="border: 1px solid">
+                  <td width="80px" class="picture">
                     <img src="<%=user.SmallPhotoUrl%>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
                   </td>
                   <td valign="bottom" colspan="2">
                     <%= feed.Body %><br/>
                     <br/>
                     Created by <%= link_to user.Name, ENV['instance_url'] + "/#{user.Id}" %>, &nbsp;&nbsp;&nbsp;<%= feed.CreatedDate.strftime("%Y-%m-%d %I:%M %p") %>
-                    &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "/challenges/new_reply", :rel => 'facebox'%> 
+                    &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "/challenges/new_reply?feeditem_id=#{feed['Id']}&challenge_id=#{@challenge_id}", :rel => 'facebox'%>
                   </td>
                 </tr>
                 <% if feed.CommentCount.to_i > 0 %>
@@ -61,12 +61,12 @@
                   <% detail.comments.each do |comment| %>
                   <tr>
                     <td>&nbsp;</td>
-                    <td width="60px" style="border: 1px solid" class="reply">
+                    <td width="80px" class="picture">
                       <img src="<%= comment['user']['photo']['smallPhotoUrl'] %>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
                     </td>
                     <td valign="bottom" class="reply">
                       <div class="box-b">
-                        <%= comment['user']['name'] %> <br/>
+                        <%= comment['body']['text'] %> <br/>
                         Created by <%= link_to comment['user']['name'], ENV['instance_url'] + "/#{comment['user']['id']}" %>,
                         &nbsp;&nbsp;&nbsp;<%= DateTime.parse(comment['createdDate']).strftime("%Y-%m-%d %I:%M %p") %>
                       </div>
@@ -134,8 +134,10 @@
 
 <style>
   .comment {background-color: #FDFCDC}
+  .comment .picture {background-color: white}
   .reply {background-color: #C1FFC1; padding: 5px}
-  .box-b {border: 1px solid #C2C2C2; padding:10px;
+  
+  .box-b { /*border: 1px solid #C2C2C2; */ padding:10px;
           -moz-border-radius: 5px;
           border-radius: 5px;
           margin: 5px;

@@ -1,6 +1,7 @@
 <h3>Post a Reply</h3>
-<form class="new_feed" id="new_feed" method="post">
+<form class="new_reply" id="new_reply" method="post" action="new_reply">
   <input type="hidden" name="challenge_id" value="<%=@challenge_id%>"></input>
+  <input type="hidden" name="feeditem_id" value="<%=@feeditem_id%>"></input>
   <textarea id="reply_text" cols="80" rows="8" name="reply_text"></textarea>
   <br/>
   <input type="image" src="/assets/post_button.png" value="Submit" name="Submit" alt="Submit"/>

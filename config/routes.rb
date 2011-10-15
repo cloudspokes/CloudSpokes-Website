@@ -10,8 +10,9 @@ Cloudspokes::Application.routes.draw do
   resources :chatters, :only => [:index]
 
   get "/challenges/new_reply" => "challenges#new_reply"
+  post "/challenges/new_reply" => "challenges#do_new_reply"
   match '/challenges/index' => 'challenges#index'
-  post "/challenges/:id" => "challenges#post_feed"
+  post "/challenges/:id" => "challenges#do_new_post_feed"
   match "/challenges/:id" => "challenges#show"
   
   

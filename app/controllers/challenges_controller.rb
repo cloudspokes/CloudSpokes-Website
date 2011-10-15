@@ -29,7 +29,7 @@ class ChallengesController < ApplicationController
   end
 
   # creates a new feed
-  def post_feed
+  def do_new_post_feed
     feed_text = params['feed_text']
     challenge_id = params['challenge_id']
     #try to post a feed_text
@@ -49,10 +49,29 @@ class ChallengesController < ApplicationController
 
   #show a new reply box
   def new_reply
-    puts 'asdasfsd'
+    @feeditem_id = params['feeditem_id']
+    @challenge_id = params['challenge_id']
     render "#{Rails.root}/app/views/challenges/reply.html.erb", :layout => false
     #render :template => "challenges/reply"
     #render :text => 'new reply box'
+  end
+
+  #create a new reply to an existing feed
+  def do_new_reply
+    @feeditem_id = params['feeditem_id']
+    @challenge_id = params['challenge_id']
+    @reply_text = params['reply_text']
+    post_comment(dbdc_client, @feeditem_id, @reply_text)
+    redirect_to :id => @challenge_id, :action => 'show'
+  end
+  
+  def post_comment (client, feeditem_id, reply_text)
+    client.materialize('FeedComment')
+    fcomment = FeedComment.new()
+    fcomment.FeedItemId = feeditem_id
+    fcomment.CommentBody = reply_text
+    status = fcomment.save()
+    puts status
   end
 
 end
