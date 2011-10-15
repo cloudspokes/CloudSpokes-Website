@@ -8,6 +8,8 @@ gem 'rails', '3.1.0'
 
 gem 'compass', git: 'git://github.com/chriseppstein/compass.git'
 
+gem 'pg'
+
 gem 'databasedotcom'
 #leverage te databasedotcom rails helper gem
 gem 'databasedotcom-rails'
