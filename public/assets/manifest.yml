@@ -1,5 +1,9 @@
 ---
 jquery-ui.min.js: jquery-ui.min-a125f4a7d0e7b623924874ed100e3ebd.js
 jquery.min.js: jquery.min-bfc8890cd08eb0a368462df9c34f82b1.js
-application.js: application-a9b0540230c5bd200424dc441952c896.js
-application.css: application-5f8cc45356d3af5321374a4f9dee0bea.css
+facebox/closelabel.png: facebox/closelabel-f6fbafd3ede927af4062d521fa6c3f52.png
+facebox/loading.gif: facebox/loading-5ae83368e141f2f810257d693983cbc5.gif
+jquery.facebox.js: jquery.facebox-352c0d79cb908485512e84316f08faa8.js
+jquery.facebox.css: jquery.facebox-ee018e1649e74170a9b42e214e0f673e.css
+application.js: application-1a112d4e60ba9876b65ab07838d35b7f.js
+application.css: application-912108b77cf830905bf3fef24ddc39ad.css
