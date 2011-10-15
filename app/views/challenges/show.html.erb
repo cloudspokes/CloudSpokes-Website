@@ -37,6 +37,17 @@
                   <td valign="bottom">
                     <%= feed.Body %><br/>
                     <br/>
+                    <% if feed.CommentCount.to_i > 0 %>
+                        There are <%= feed.CommentCount %> comments.<br/>
+                        <% detail = Databasedotcom::Chatter::FeedItem.find(@dbdc_client, feed.Id) %>
+                        <% detail.comments.each do |comment| %>
+                          <img src="<%= comment['user']['photo']['smallPhotoUrl'] %>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
+
+                          <%= comment['user']['name'] %> <br/>
+                          Created by <%= link_to comment['user']['name'], ENV['instance_url'] + "/#{comment['user']['id']}" %>,
+                          &nbsp;&nbsp;&nbsp;<%= comment['createdDate'] %>
+                        <% end %>
+                    <%end%>
                     Created by <%= link_to user.Name, ENV['instance_url'] + "/#{user.Id}" %>, &nbsp;&nbsp;&nbsp;<%= feed.CreatedDate.strftime("%Y-%m-%d %I:%M %p") %>
                     &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "#"%>
                   </td>

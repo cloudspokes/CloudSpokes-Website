@@ -5,7 +5,6 @@ class ChattersController < ApplicationController
 
   def index    
     @me = User.find_by_username(dbdc_client.username)
-
     
     find('dfd','sdf')
     #create
