@@ -51,7 +51,7 @@ class ChallengesController < ApplicationController
   def new_reply
     @feeditem_id = params['feeditem_id']
     @challenge_id = params['challenge_id']
-    render "#{Rails.root}/app/views/challenges/reply.html.erb", :layout => false
+    render "#{Rails.root}/app/views/shared/_reply.html.erb", :layout => false
     #render :template => "challenges/reply"
     #render :text => 'new reply box'
   end
@@ -61,17 +61,8 @@ class ChallengesController < ApplicationController
     @feeditem_id = params['feeditem_id']
     @challenge_id = params['challenge_id']
     @reply_text = params['reply_text']
-    post_comment(dbdc_client, @feeditem_id, @reply_text)
+    ChallengeFeeds.post_comment(dbdc_client, @feeditem_id, @reply_text)
     redirect_to :id => @challenge_id, :action => 'show'
   end
   
-  def post_comment (client, feeditem_id, reply_text)
-    client.materialize('FeedComment')
-    fcomment = FeedComment.new()
-    fcomment.FeedItemId = feeditem_id
-    fcomment.CommentBody = reply_text
-    status = fcomment.save()
-    puts status
-  end
-
 end

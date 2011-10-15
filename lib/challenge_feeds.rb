@@ -32,4 +32,12 @@ class ChallengeFeeds
     puts status
   end
 
+  def self.post_comment (client, feeditem_id, reply_text)
+    client.materialize('FeedComment')
+    fcomment = FeedComment.new()
+    fcomment.FeedItemId = feeditem_id
+    fcomment.CommentBody = reply_text
+    status = fcomment.save()
+    puts status
+  end
 end

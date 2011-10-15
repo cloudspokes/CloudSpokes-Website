@@ -6,9 +6,6 @@ Cloudspokes::Application.routes.draw do
   match "/members/:id" => "members#show"  
   resources :members, :only => [:index, :new, :create, :show]
 
-  match '/chatters/index' => 'chatters#index'
-  resources :chatters, :only => [:index]
-
   get "/challenges/new_reply" => "challenges#new_reply"
   post "/challenges/new_reply" => "challenges#do_new_reply"
   match '/challenges/index' => 'challenges#index'
