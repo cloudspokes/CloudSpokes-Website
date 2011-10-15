@@ -1,0 +1,58 @@
+about=List versions of all Rails frameworks and the environment
+assets\:clean=Remove compiled assets
+assets\:precompile=Compile all the assets named in config.assets.precompile
+default=
+doc=
+doc/api=
+doc/api/index.html=
+doc/app=
+doc/app/index.html=
+doc\:app=Generate docs for the app -- also available doc:rails, doc:guides, doc:plugins (options: TEMPLATE=/rdoc-template.rb, TITLE="Custom Title")
+doc\:clobber=
+doc\:clobber_app=
+doc\:clobber_plugins=
+doc\:clobber_rails=
+doc\:guides=
+doc\:plugins=
+doc\:rails=
+doc\:reapp=
+doc\:rerails=
+environment=
+log\:clear=Truncates all *.log files in log/ to zero bytes
+middleware=Prints out your Rack middleware stack
+noop=
+notes=Enumerate all annotations (use notes:optimize, :fixme, :todo for focus)
+notes\:custom=Enumerate a custom annotation, specify with ANNOTATION=CUSTOM
+notes\:fixme=
+notes\:optimize=
+notes\:todo=
+rails\:template=Applies the template supplied by LOCATION=(/path/to/template) or URL
+rails\:templates\:copy=
+rails\:update=Update configs and some other initially generated files (or use just update:configs, update:scripts, or update:application_controller)
+rails\:update\:application_controller=
+rails\:update\:configs=
+rails\:update\:scripts=
+rails_env=
+routes=Print out all defined routes in match order, with names. Target specific controller with CONTROLLER=x.
+secret=Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions).
+spec=Run all specs in spec directory (excluding plugin specs)
+spec\:controllers=Run the code examples in spec/controllers
+spec\:helpers=Run the code examples in spec/helpers
+spec\:lib=Run the code examples in spec/lib
+spec\:mailers=Run the code examples in spec/mailers
+spec\:models=Run the code examples in spec/models
+spec\:rcov=Run all specs with rcov
+spec\:requests=Run the code examples in spec/requests
+spec\:routing=Run the code examples in spec/routing
+spec\:statsetup=
+spec\:views=Run the code examples in spec/views
+stats=Report code statistics (KLOCs, etc) from the application
+time\:zones\:all=Displays all time zones, also available: time:zones:us, time:zones:local -- filter with OFFSET parameter, e.g., OFFSET=-6
+time\:zones\:local=
+time\:zones\:us=
+tmp\:cache\:clear=
+tmp\:clear=Clear session, cache, and socket files from tmp/ (narrow w/ tmp:sessions:clear, tmp:cache:clear, tmp:sockets:clear)
+tmp\:create=Creates tmp directories for sessions, cache, sockets, and pids
+tmp\:pids\:clear=
+tmp\:sessions\:clear=
+tmp\:sockets\:clear=

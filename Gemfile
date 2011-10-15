@@ -12,6 +12,9 @@ gem 'databasedotcom'
 #leverage te databasedotcom rails helper gem
 gem 'databasedotcom-rails'
 
+# sqlite for small stuff, like captcha
+gem 'sqlite3'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
 
