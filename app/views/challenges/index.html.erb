@@ -1,3 +1,20 @@
-<% @challenges.each do |record| %>
-    <%= link_to record["Name"], record['Id'] %><br/>
-<% end %>
+<h2>List of Challenges</h2>
+<br/>
+<% unless @challenges.empty? %>
+
+  <% @challenges.each do |record| %>
+    <div class="box-b">
+      <%= link_to record["Name"], record['Id'] %>
+    </div>
+  <% end%>
+<% else %>
+    No Challenges found
+<%end%>
+
+<style>
+  .box-b {border: 1px solid #C2C2C2; padding:10px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  }
+</style>

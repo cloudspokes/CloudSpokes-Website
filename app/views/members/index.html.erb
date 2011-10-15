@@ -1,0 +1,24 @@
+<%= image_tag("members_banner.png") %><br/>
+
+<% unless @members.empty? %>
+  <% @members.each do |member| %>
+      <div class="box-b">
+         <%= link_to member['Name'], member['Name'] %>
+      </div>
+  <% end %>
+<% else %>
+  No Members found
+<% end %>
+<%= link_to "Create a new member (todo)", new_member_path %>
+<hr/>
+<%= link_to "Show Chatter related to this DBDC connection", chatters_index_path %>
+
+
+<style>
+  .box-b {border: 1px solid #C2C2C2; padding:10px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  width: 50%
+  }
+</style>

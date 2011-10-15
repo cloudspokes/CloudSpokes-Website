@@ -1,23 +1,52 @@
 <h1>Chatters#index</h1>
 <p>My Chatter listing</p>
+Presented in Raw Formats
 <hr/>
 
 I am  <%= @me['Name'] %>, id: <%= @me['Id'] %>
 
 <table border="2px">
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>URL</th>
+    <th>ParentID  /  parentName</th>
+    <th>Body</th>
+    <th>Comments</th>
+    <th>Created Date</th>
+    <th>Type</th>
+    <th>Likes</th>
+  </tr>
   <% @feed_items.each do |feed_item| %>
     <tr>
       <td>
-        <%=  feed_item.likes    %>
+        <%=  feed_item.raw_hash['id']   %>
+      </td>
+
+      <td>
+        <%=  feed_item.raw_hash['user']   %>
       </td>
       <td>
-        <%= feed_item.comments  %>
+        <%=  feed_item.raw_hash['url']   %>
       </td>
       <td>
-        
+        <%=  feed_item.raw_hash['parentId'] + "  / " + feed_item.raw_hash['parentName'] %>
+      </td>
+
+      <td>
+        <%=  feed_item.raw_hash['body']['messageSegments'][0]['text']   %>
       </td>
       <td>
-        <%=  feed_item.like    %>
+        <%= feed_item.raw_hash['comments']  %>
+      </td>
+      <td>
+        <%= feed_item.raw_hash['createdDate']  %>
+      </td>
+      <td>
+        <%= feed_item.raw_hash['feed_item.type']  %>
+      </td>
+      <td>
+        <%=  feed_item.raw_hash['likes']    %>
       </td>
     </tr>
   <% end %>

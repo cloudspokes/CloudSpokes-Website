@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     puts '### authenticating (ApplicationController).###'
     ENV['access_token'] = dbdc_client.oauth_token
     ENV['instance_url'] = dbdc_client.instance_url
+    ENV['api_version'] = dbdc_client.version
 
     # config = YAML.load_file(File.join(::Rails.root, 'config', 'databasedotcom.yml'))
     # username = config["username"]

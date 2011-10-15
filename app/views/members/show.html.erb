@@ -1,0 +1,29 @@
+<% unless @member_detail.empty? %>
+    <table>
+  <% @member_detail.keys.each do |key| %>
+    <tr>
+      <th align="left"><%= key.humanize %></th>
+      <td> <%=  @member_detail[key]%></td>
+    </tr>
+  <% end %>
+    </table>
+
+<%else%>
+  everything is empty
+<% end %>
+
+<style>
+  h3 {
+    color: #6699C9;
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+
+  h2 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 100%;
+  }
+</style>

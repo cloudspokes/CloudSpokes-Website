@@ -2,18 +2,17 @@
   <!--
     <table>
   <% @challenge.keys.each do |key| %>
-                        <tr>
-                          <th align="left"><%= key.humanize %></th>
-                          <td> <%=  @challenge[key]%></td>
-                        </tr>
+      <tr>
+        <th align="left"><%= key.humanize %></th>
+        <td> <%=  @challenge[key]%></td>
+      </tr>
   <% end %>
     </table>
   -->
 
-
   <table width="100%">
     <tr>
-      <td width="65%">
+      <td width="65%" valign="top">
         <h3>Overview</h3> <br/>
         <%=  @challenge['Description__c']%> <br/>
         <h3>Challenge Requirements</h3> <br/>
@@ -23,10 +22,35 @@
         <h3>Submission Details</h3> <br/>
         <%=  @challenge['Submission_Details__c']%> <br/>
         <h3>Additional Info</h3> <br/>
-        <%=  @challenge['Additional_Info__c'] %> <br/>
+        <%=  @challenge['Additional_Info__c'] %> <br/><br/>
+        <%= image_tag("register_links.png") %><br/>
+        <h3>Discussion</h3> <br/>
+        <%unless @feeds.empty?%>
+          <% @feeds.each do |feed|%>
+            <div class="box-b">
+              <% user = User.find(feed.CreatedById) %>
+              <table>
+                <tr>
+                  <td width="80px" style="border: 1px solid">
+                    <img src="<%=user.SmallPhotoUrl%>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
+                  </td>
+                  <td valign="bottom">
+                    <%= feed.Body %><br/>
+                    <br/>
+                    Created by <%= link_to user.Name, ENV['instance_url'] + "/#{user.Id}" %>, &nbsp;&nbsp;&nbsp;<%= feed.CreatedDate.strftime("%Y-%m-%d %I:%M %p") %>
+                    &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "#"%>
+                  </td>
+                </tr>
+              </table>                            
+            </div>
+          <%  end %>
+        <%else%>
+          No Discussion
+        <%end%>
+        <br/>
       </td>
 
-      <td width="35%">
+      <td width="35%"  valign="top">
         <h2><%=  @challenge['Name']%> </h2><br/>
         <h3>Time Left for Submission</h3> <br/>
         <%= @challenge['Days_till_Close__c']%> days<br/>
@@ -40,9 +64,17 @@
         <%=  @challenge['Additional_Info__c'] %> <br/>
       </td>
     </tr>
+    <tr>
+      <td  valign="top">
+        <hr/>
+        <h3>Post a Comment</h3>
+      </td>
+      <td  valign="top">
+        <%= image_tag("dev_format.png") %>
+      </td>
+    </tr>
   </table>
-  <hr/>
-  <h3>Post a Comment</h3>
+
 
 <%else%>
   everything is empty
@@ -61,5 +93,13 @@
     font-size: 36px;
     font-weight: normal;
     line-height: 100%;
+  }
+</style>
+
+<style>
+  .box-b {border: 1px solid #C2C2C2; padding:10px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin: 5px;
   }
 </style>
