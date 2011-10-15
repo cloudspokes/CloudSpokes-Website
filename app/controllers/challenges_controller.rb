@@ -14,12 +14,13 @@ class ChallengesController < ApplicationController
     @dbdc_client = dbdc_client
   end
 
-  
+  # shows all challenges
   def index    
     @challenges = Challenges.get_challenges()
     puts '###challenges are' +  @challenges.to_s
   end
 
+  # retrieves all challenge's chatter feeds, see show method
   def challenge_feeds(challenge_id)
     # Safe max count is 500, >1000 exceeds salesforce non-admin limitation
     feeds = Challenge__Feed.query("parentId='#{challenge_id}' limit 500")
@@ -27,28 +28,31 @@ class ChallengesController < ApplicationController
     return feeds
   end
 
+  # creates a new feed
   def post_feed
     feed_text = params['feed_text']
     challenge_id = params['challenge_id']
     #try to post a feed_text
     status = ChallengeFeeds.post_feed(dbdc_client, challenge_id, feed_text)
-    redirect_to :back
-    
+    redirect_to :back  
   end
 
+  #shows a challenge with detail info & comment & reply box
   def show
     @challenge_id = params['id']
     # get challenge detail
     @challenge = Challenges.show_challenge(@challenge_id)
 
-
-    #Now get the EntitySubscription related to this Challenge and the connection Session.
-    #@me = User.find_by_username(dbdc_client.username)
-    #connection_user_id =@me['Id']
-    #@entity_subscription = ChallengeFeeds.get_entity_subscription(dbdc_client, connection_user_id, "and ParentId='#{@challenge_id}'")
-
     #get all feeds associated with this challenge.
     @feeds = ChallengeFeeds.challenge_feeds(dbdc_client, @challenge_id)
+  end
+
+  #show a new reply box
+  def new_reply
+    puts 'asdasfsd'
+    render "#{Rails.root}/app/views/challenges/reply.html.erb", :layout => false
+    #render :template => "challenges/reply"
+    #render :text => 'new reply box'
   end
 
 end
