@@ -22,7 +22,7 @@ class ChallengeFeeds
     return feeds
   end
 
-  def self.post_comment(client, challenge_id, comment)
+  def self.post_feed(client, challenge_id, comment)
     client.materialize('FeedItem')
     post = FeedItem.new()
     post.ParentId = challenge_id

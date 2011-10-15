@@ -10,7 +10,9 @@ Cloudspokes::Application.routes.draw do
   resources :chatters, :only => [:index]
 
   match '/challenges/index' => 'challenges#index'
+  post "/challenges/:id" => "challenges#post_feed"
   match "/challenges/:id" => "challenges#show"
+  
 
   get 'sessions/login'
   get 'sessions/sfdcauth'

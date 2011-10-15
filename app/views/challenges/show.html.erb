@@ -2,10 +2,10 @@
   <!--
     <table>
   <% @challenge.keys.each do |key| %>
-      <tr>
-        <th align="left"><%= key.humanize %></th>
-        <td> <%=  @challenge[key]%></td>
-      </tr>
+        <tr>
+          <th align="left"><%= key.humanize %></th>
+          <td> <%=  @challenge[key]%></td>
+        </tr>
   <% end %>
     </table>
   -->
@@ -29,30 +29,43 @@
           <% @feeds.each do |feed|%>
             <div class="box-b">
               <% user = User.find(feed.CreatedById) %>
-              <table>
-                <tr>
+              <table cellspacing="5px" >
+                <tr class="comment">
                   <td width="80px" style="border: 1px solid">
                     <img src="<%=user.SmallPhotoUrl%>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
                   </td>
-                  <td valign="bottom">
+                  <td valign="bottom" colspan="2">
                     <%= feed.Body %><br/>
                     <br/>
-                    <% if feed.CommentCount.to_i > 0 %>
-                        There are <%= feed.CommentCount %> comments.<br/>
-                        <% detail = Databasedotcom::Chatter::FeedItem.find(@dbdc_client, feed.Id) %>
-                        <% detail.comments.each do |comment| %>
-                          <img src="<%= comment['user']['photo']['smallPhotoUrl'] %>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
-
-                          <%= comment['user']['name'] %> <br/>
-                          Created by <%= link_to comment['user']['name'], ENV['instance_url'] + "/#{comment['user']['id']}" %>,
-                          &nbsp;&nbsp;&nbsp;<%= comment['createdDate'] %>
-                        <% end %>
-                    <%end%>
                     Created by <%= link_to user.Name, ENV['instance_url'] + "/#{user.Id}" %>, &nbsp;&nbsp;&nbsp;<%= feed.CreatedDate.strftime("%Y-%m-%d %I:%M %p") %>
                     &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "#"%>
                   </td>
                 </tr>
-              </table>                            
+                <% if feed.CommentCount.to_i > 0 %>
+                  <!-- follow on comment section -->
+                  <tr >
+                    <td colspan="3">There are <%= feed.CommentCount %> comments.</td>
+                    <% detail = Databasedotcom::Chatter::FeedItem.find(@dbdc_client, feed.Id) %>
+                  </tr>
+                  <% detail.comments.each do |comment| %>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td width="60px" style="border: 1px solid" class="reply">
+                      <img src="<%= comment['user']['photo']['smallPhotoUrl'] %>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
+                    </td>
+                    <td valign="bottom" class="reply">
+                      <div class="box-b">
+                        <%= comment['user']['name'] %> <br/>
+                        Created by <%= link_to comment['user']['name'], ENV['instance_url'] + "/#{comment['user']['id']}" %>,
+                        &nbsp;&nbsp;&nbsp;<%= DateTime.parse(comment['createdDate']).strftime("%Y-%m-%d %I:%M %p") %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr><td colspan="3">&nbsp;<!-- separator between comments --></td></tr>
+                  <% end %>
+                <!-- follow on comment section -->
+                <%end%>
+              </table>
             </div>
           <%  end %>
         <%else%>
@@ -73,15 +86,16 @@
         <%=  @challenge['Winner_Announced__c']%> <br/>
         <h3>Additional Info</h3> <br/>
         <%=  @challenge['Additional_Info__c'] %> <br/>
+        <%= image_tag("dev_format.png") %>
       </td>
     </tr>
     <tr>
       <td  valign="top">
         <hr/>
         <h3>Post a Comment</h3>
+        <%= render :partial => "/shared/feed.html.erb"  %>
       </td>
       <td  valign="top">
-        <%= image_tag("dev_format.png") %>
       </td>
     </tr>
   </table>
@@ -108,6 +122,8 @@
 </style>
 
 <style>
+  .comment {background-color: #FDFCDC}
+  .reply {background-color: #C1FFC1; padding: 5px}
   .box-b {border: 1px solid #C2C2C2; padding:10px;
           -moz-border-radius: 5px;
           border-radius: 5px;

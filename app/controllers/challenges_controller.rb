@@ -27,11 +27,13 @@ class ChallengesController < ApplicationController
     return feeds
   end
 
-  def post_comment
-    @challenge_id = params['challenge_id']
-    #try to post a comment
-    @new_comment = "---Inserting with Ray's ruby app. " + DateTime.now().to_s
-    @status = ChallengeFeeds.post_comment(dbdc_client, @challenge_id, @new_comment)
+  def post_feed
+    feed_text = params['feed_text']
+    challenge_id = params['challenge_id']
+    #try to post a feed_text
+    status = ChallengeFeeds.post_feed(dbdc_client, challenge_id, feed_text)
+    redirect_to :back
+    
   end
 
   def show
