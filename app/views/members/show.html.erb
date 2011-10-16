@@ -1,12 +1,67 @@
 <% unless @member_detail.empty? %>
-    <table>
-  <% @member_detail.keys.each do |key| %>
+  <img src="<%=@member_detail["Profile_Pic__c"] %>" width="100px"/>
+  <%=  @member_detail['Name']%>
+  <br/>
+  <h4>Quote</h4>
+  <br/>
+  <%=  @member_detail['Quote__c']%>
+  <table cellpadding="5px" cellspacing="10px">
+    <!--<% @member_detail.keys.each do |key| %>
+        <tr>
+          <th align="left"><%= key.humanize %></th>
+          <td> <%=  @member_detail[key]%></td>
+        </tr>
+    <% end %>-->
     <tr>
-      <th align="left"><%= key.humanize %></th>
-      <td> <%=  @member_detail[key]%></td>
+      <th align="left">Challenges Submitted</th>
+      <td>
+        <%=  @member_detail['Challenges_submitted__c']%>&nbsp;&nbsp;
+
+      </td>
     </tr>
-  <% end %>
-    </table>
+    <tr>
+      <th align="left">Member since</th>
+      <td> <%=  DateTime.parse(@member_detail['CreatedDate']).strftime("%Y-%m-%d")%></td>
+    </tr>
+    <tr>
+      <th align="left">Facebook</th>
+      <td> <%=  @member_detail['Facebook__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">MySpace</th>
+      <td> <%=  @member_detail['Myspace__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Quote</th>
+      <td> <%=  @member_detail['Quote__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Challenges Submitted</th>
+      <td> <%=  @member_detail['Challenges_submitted__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Total 1st Place</th>
+      <td> <%=  @member_detail['Total_1st_place__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Total 2nd Place</th>
+      <td> <%=  @member_detail['Total_2nd_place__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Total 3rd Place</th>
+      <td> <%=  @member_detail['Total_3st_place__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Total Badges</th>
+      <td> <%=  @member_detail['Total_badges__c']%></td>
+    </tr>
+    <tr>
+      <th align="left">Salesforce Data detail</th>
+      <td> 
+        <a href="<%=  ENV['instance_url'] + "/" +@member_detail['SFDC_User__c']%>"><%=@member_detail['SFDC_User__c']%></a>
+      </td>
+    </tr>
+  </table>
 
 <%else%>
   everything is empty

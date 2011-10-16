@@ -31,4 +31,11 @@ class Members
     return member_detail
   end
 
+  def self.show_member_detail_by_id(member_id)
+    set_headers()
+    url = ENV['instance_url'] + "/services/data/v22.0/sobjects/Member__c/#{member_id}"
+    result = get(url)
+    return result
+  end
+
 end
