@@ -57,8 +57,10 @@
     </tr>
     <tr>
       <th align="left">Salesforce Data detail</th>
-      <td> 
-        <a href="<%=  ENV['instance_url'] + "/" +@member_detail['SFDC_User__c']%>"><%=@member_detail['SFDC_User__c']%></a>
+      <td>
+        <% unless @member_detail['SFDC_User__c'].nil? %>
+          <a href="<%=  ENV['instance_url'] + "/" +@member_detail['SFDC_User__c']%>"><%=@member_detail['SFDC_User__c']%></a>
+        <% end %>
       </td>
     </tr>
   </table>
