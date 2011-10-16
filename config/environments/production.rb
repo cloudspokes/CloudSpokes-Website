@@ -58,3 +58,9 @@ Cloudspokes::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+# for Heroku
+Recaptcha.configure do |config|
+  config.public_key  = '6LcrJckSAAAAAK18jvSAjamzsltV5czan8rQCWEI'
+  config.private_key = '6LcrJckSAAAAACNRvbPijU4907NgMsQzD2xzz3vG'
+end

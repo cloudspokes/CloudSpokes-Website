@@ -12,7 +12,7 @@ Cloudspokes::Application.routes.draw do
   post "/challenges/:id" => "challenges#do_new_post_feed"
   match "/challenges/:id" => "challenges#show"
   
-  
+  match '/simple_captcha(/:action)' => 'simple_captcha', :as => :simple_captcha
 
   get 'sessions/login'
   get 'sessions/sfdcauth'

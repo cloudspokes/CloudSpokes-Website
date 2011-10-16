@@ -1,7 +1,7 @@
 require 'pp'
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  
   def authenticate
     puts '### authenticating (ApplicationController).###'
     ENV['access_token'] = dbdc_client.oauth_token

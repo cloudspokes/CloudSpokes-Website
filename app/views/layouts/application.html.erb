@@ -25,6 +25,7 @@
           </ul></nav>
       </header>
       <section id='content'>
+        <h3 style="background-color: #000000"><%= raw (flash[:notice]) %>  <%= raw( flash[:error])%></h3>
         <%= yield %>
       </section>
       <footer id='bottom'>

@@ -30,6 +30,12 @@ class ChallengesController < ApplicationController
 
   # creates a new feed
   def do_new_post_feed
+    if not verify_recaptcha
+      flash[:notice] = "Cannot Post. <br/>The words do not match the ones in the recaptcha image!"
+      redirect_to :back
+      return
+    end
+
     feed_text = params['feed_text']
     challenge_id = params['challenge_id']
     #try to post a feed_text

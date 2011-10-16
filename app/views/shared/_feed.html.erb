@@ -1,6 +1,10 @@
-<form class="new_feed" id="new_feed" method="post">
-  <input type="hidden" name="challenge_id" value="<%=@challenge_id%>"></input>
-  <textarea id="feed_text" cols="80" rows="8" name="feed_text"></textarea>
+<%= form_tag("", :method => "post") do %>
+  <%= hidden_field_tag "challenge_id", @challenge_id %>
+  
+  <%= text_area_tag(:feed_text, nil, :cols => "80", :rows => "8" )  %>
   <br/>
-  <input type="image" src="/assets/post_button.png" value="Submit" name="Submit" alt="Submit"/>
-</form>
+  <%= recaptcha_tags  %>&nbsp;&nbsp;&nbsp;
+  <%= image_submit_tag("post_button.png", :name =>"Submit",  :alt => "Submit") %>
+  
+<% end %>
+

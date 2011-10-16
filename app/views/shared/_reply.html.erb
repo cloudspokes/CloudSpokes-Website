@@ -1,9 +1,15 @@
 
-<h3>Post a Reply</h3>
-<form class="new_reply" id="new_reply" method="post" action="new_reply">
-  <input type="hidden" name="challenge_id" value="<%=@challenge_id%>"></input>
-  <input type="hidden" name="feeditem_id" value="<%=@feeditem_id%>"></input>
-  <textarea id="reply_text" cols="80" rows="8" name="reply_text"></textarea>
+
+
+<%= form_tag("new_reply", :method => "post") do %>
+  <%= hidden_field_tag "challenge_id", @challenge_id %>
+  <%= hidden_field_tag "feeditem_id", @feeditem_id %>
+
+  <%= text_area_tag("reply_text", nil, :cols => "80", :rows => "8" )  %>
   <br/>
-  <input type="image" src="/assets/post_button.png" value="Submit" name="Submit" alt="Submit"/>
-</form>
+  <br/>
+  <%= image_submit_tag("post_button.png", :name =>"Submit",  :alt => "Submit") %>
+  &nbsp;&nbsp;&nbsp;
+  <%= recaptcha_tags  %>
+<% end %>
+

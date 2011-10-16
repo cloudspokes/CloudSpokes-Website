@@ -7,6 +7,8 @@ require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
 
+require 'net/http' #otherwise, it causes error with recaptcha
+
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
