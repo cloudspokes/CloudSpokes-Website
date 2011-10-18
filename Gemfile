@@ -11,14 +11,18 @@ gem 'compass', git: 'git://github.com/chriseppstein/compass.git'
 gem 'facebox-rails'
 gem "recaptcha", :require => "recaptcha/rails"
 
-gem 'pg'
+
+gem 'jquery-rails'
+gem 'httparty'
+gem 'omniauth'
 
 gem 'databasedotcom'
-#leverage te databasedotcom rails helper gem
+#leverage the databasedotcom rails helper gem
 gem 'databasedotcom-rails'
 
 # sqlite for small stuff, like captcha
 gem 'sqlite3'
+gem 'pg'  #Heroku force you to use PostgreSQL
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.6'
@@ -33,6 +37,12 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  #BDD stuff
+  gem "cucumber"
+  gem "cucumber-rails"
+  gem "capybara"
+  gem 'minitest'
+  gem 'database_cleaner'
 end
 
 group :assets do
@@ -41,16 +51,4 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
-gem 'httparty'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-gem 'omniauth'
