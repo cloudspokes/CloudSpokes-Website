@@ -2,8 +2,9 @@ require "auth"
 
 class SessionsController < ApplicationController
     def login
+      # really should use the before_filter to do the authentication
     end
-    
+
     # temp method for fetching a new access token and saving to session. This will change pending OAuth bug fix
     # this same code actually run in the application_helper right now.
     def sfdcauth

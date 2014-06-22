@@ -1,0 +1,10 @@
+<%= form_tag("", :method => "post") do %>
+  <%= hidden_field_tag "challenge_id", @challenge_id %>
+  
+  <%= text_area_tag(:feed_text, nil, :cols => "80", :rows => "8" )  %>
+  <br/>
+  <%= recaptcha_tags  %>&nbsp;&nbsp;&nbsp;
+  <%= image_submit_tag("post_button.png", :name =>"Submit",  :alt => "Submit") %>
+  
+<% end %>
+

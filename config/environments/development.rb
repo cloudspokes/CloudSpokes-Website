@@ -28,3 +28,9 @@ Cloudspokes::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+# for localhost Captcha
+Recaptcha.configure do |config|
+  config.public_key  = '6LdXJckSAAAAAMUlEYKNC8sFjZz-BqYKQc5sySUW'
+  config.private_key = '6LdXJckSAAAAAEbEEW1XOGeaI_66wq6a4zLFUhmR'
+end

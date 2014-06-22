@@ -4,3 +4,7 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
+# for IDE
+nbproject/*
+nbproject/**
+nbproject/private/*

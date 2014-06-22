@@ -1,0 +1,145 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : '../src/loading.gif',
+        closeImage   : '../src/closelabel.png'
+      })
+    })
+</script>
+
+
+
+<% unless @challenge.empty? %>
+  <!--
+    <table>
+  <% @challenge.keys.each do |key| %>
+        <tr>
+          <th align="left"><%= key.humanize %></th>
+          <td> <%=  @challenge[key]%></td>
+        </tr>
+  <% end %>
+    </table>
+  -->
+
+  <table width="100%">
+    <tr>
+      <td width="65%" valign="top">
+        <h3>Challenge Overview</h3> <br/>
+        <%=  @challenge['Description__c']%> <br/>
+        <h3>Challenge Requirements</h3> <br/>
+        <%= @challenge['Requirements__c']%> <br/>
+        <h3>Usage Details</h3> <br/>
+        <%=  @challenge['Usage_Details__c']%> <br/>
+        <h3>Submission Details</h3> <br/>
+        <%=  @challenge['Submission_Details__c']%> <br/>
+        <h3>Additional Info</h3> <br/>
+        <%=  @challenge['Additional_Info__c'] %> <br/><br/>
+        <%= image_tag("register_links.png") %><br/>
+        <h3>Discussion</h3> <br/>
+        <%unless @feeds.empty?%>
+          <% @feeds.each do |feed|%>
+            <div class="box-b">
+              <% user = User.find(feed.CreatedById) %>
+              <table cellspacing="5px" >
+                <tr class="comment">
+                  <td width="80px" class="picture">
+                    <img src="<%=user.SmallPhotoUrl%>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
+                  </td>
+                  <td valign="bottom" colspan="2">
+                    <%= feed.Body %><br/>
+                    <br/>
+                    Created by <%= link_to user.Name, ENV['instance_url'] + "/#{user.Id}" %>, &nbsp;&nbsp;&nbsp;<%= feed.CreatedDate.strftime("%Y-%m-%d %I:%M %p") %>
+                    &nbsp;&nbsp;&nbsp; <%= link_to "Reply", "/challenges/new_reply?feeditem_id=#{feed['Id']}&challenge_id=#{@challenge_id}", :rel => 'facebox'%>
+                  </td>
+                </tr>
+                <% if feed.CommentCount.to_i > 0 %>
+                  <!-- follow on comment section -->
+                  <tr >
+                    <td colspan="3">There are <%= feed.CommentCount %> comments.</td>
+                    <% detail = Databasedotcom::Chatter::FeedItem.find(@dbdc_client, feed.Id) %>
+                  </tr>
+                  <% detail.comments.each do |comment| %>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td width="80px" class="picture">
+                      <img src="<%= comment['user']['photo']['smallPhotoUrl'] %>" alt="A valid Salesforce Session is required to User Image. Login beforehand."/>
+                    </td>
+                    <td valign="bottom" class="reply">
+                      <div class="box-b">
+                        <%= comment['body']['text'] %> <br/>
+                        Created by <%= link_to comment['user']['name'], ENV['instance_url'] + "/#{comment['user']['id']}" %>,
+                        &nbsp;&nbsp;&nbsp;<%= DateTime.parse(comment['createdDate']).strftime("%Y-%m-%d %I:%M %p") %>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr><td colspan="3">&nbsp;<!-- separator between comments --></td></tr>
+                  <% end %>
+                <!-- follow on comment section -->
+                <%end%>
+              </table>
+            </div>
+          <%  end %>
+        <%else%>
+          No Discussion
+        <%end%>
+        <br/>
+      </td>
+
+      <td width="35%"  valign="top">
+        <h2><%=  @challenge['Name']%> </h2><br/>
+        <h3>Time Left for Submission</h3> <br/>
+        <%= @challenge['Days_till_Close__c']%> days<br/>
+        <h3>Top Prize</h3> <br/>
+        <%=  @challenge['Top_Prize__c']%> <br/>
+        <h3>Total Prize Money</h3> <br/>
+        $<%=  @challenge['Total_Prize_Money__c']%> <br/>
+        <h3>Winner announced</h3> <br/>
+        <%=  @challenge['Winner_Announced__c']%> <br/>
+        <h3>Additional Info</h3> <br/>
+        <%=  @challenge['Additional_Info__c'] %> <br/>
+        <%= image_tag("dev_format.png") %>
+      </td>
+    </tr>
+    <tr>
+      <td  valign="top">
+        <hr/>
+        <h3>Post a Comment</h3>
+        <%= render :partial => "/shared/feed.html.erb"  %>
+      </td>
+      <td  valign="top">
+      </td>
+    </tr>
+  </table>
+
+
+<%else%>
+  everything is empty
+<% end %>
+
+<style>
+  h3 {
+    color: #6699C9;
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+
+
+  h2 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 100%;
+  }
+</style>
+
+<style>
+  .comment {background-color: #FDFCDC}
+  .comment .picture {background-color: white}
+  .reply {background-color: #C1FFC1; padding: 5px}
+  
+  .box-b { /*border: 1px solid #C2C2C2; */ padding:10px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin: 5px;
+  }
+</style>

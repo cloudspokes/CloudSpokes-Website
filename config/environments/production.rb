@@ -15,7 +15,7 @@ Cloudspokes::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -57,4 +57,10 @@ Cloudspokes::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+end
+
+# for Heroku
+Recaptcha.configure do |config|
+  config.public_key  = '6LcrJckSAAAAAK18jvSAjamzsltV5czan8rQCWEI'
+  config.private_key = '6LcrJckSAAAAACNRvbPijU4907NgMsQzD2xzz3vG'
 end
